@@ -5,7 +5,6 @@ name: Build PR
 on:
   pull_request:
     branches: [ sa_2021 ]
-# disable for now, need to not overwrite
 jobs:
   deploy:
     name: Deploy PR to GitHub Pages
