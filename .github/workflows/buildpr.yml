@@ -21,6 +21,7 @@ jobs:
         path: source
     - name: npm install and build, then move built files into site
       run: |
+        git --version
         cd source
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         mv src pr$PR_NUMBER
