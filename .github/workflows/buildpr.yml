@@ -25,6 +25,7 @@ jobs:
       with:
         repository: source-academy/source-academy.github.io
         path: site
+        persist-credentials: false
     - name: Move built files into site
       run: |
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
