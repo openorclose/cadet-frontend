@@ -10,30 +10,21 @@ jobs:
     name: Deploy PR to GitHub Pages
     runs-on: ubuntu-latest    
     steps:
-    - name: Checkout deploy repo into site folder
-      uses: actions/checkout@v1
-      with:
-        repository: source-academy/source-academy.github.io
-        path: site
     - name: Checkout PR
-      uses: actions/checkout@v1
-      with:
-        path: source
+      uses: actions/checkout@v2
     - name: npm install and build, then move built files into site
       run: |
         git --version
         cd source
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         mv src pr$PR_NUMBER
-        cd ..
-        rm -rf site/pr$PR_NUMBER
-        mv source/pr$PR_NUMBER site
-        mv site source
-        cd source
+        git clone https://github.com/openorclose/actions-test.git
+        rm -rf actions-test/pr$PR_NUMBER
+        mv pr$PR_NUMBER actions-test
     - name: Deploy site
       uses: s0/git-publish-subdir-action@master
       env:
         REPO: git@github.com:openorclose/actions-test.git
         BRANCH: master
-        FOLDER: site
+        FOLDER: actions-test
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY }}
