@@ -10,8 +10,7 @@ jobs:
     name: Deploy PR to GitHub Pages
     runs-on: ubuntu-latest    
     steps:
-    - name: Checkout deploy repo into site folder
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
       with:
         repository: source-academy/source-academy.github.io
         path: site
