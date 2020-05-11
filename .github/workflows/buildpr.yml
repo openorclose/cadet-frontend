@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
     - name: Checkout deploy repo into site folder
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
       with:
         repository: source-academy/source-academy.github.io
         path: site
     - name: Checkout PR
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
       with:
         path: source
     - name: npm install and build, then move built files into site
