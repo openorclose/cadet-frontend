@@ -34,6 +34,7 @@ jobs:
         rm -rf site/pr$PR_NUMBER
         mv source/pr$PR_NUMBER site
         cd site
+        ls
     - name: Deploy site
       uses: s0/git-publish-subdir-action@master
       env:
