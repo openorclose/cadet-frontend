@@ -17,21 +17,22 @@ jobs:
         path: site
     - name: Checkout PR
       uses: actions/checkout@v2
-    - name: ls
-      run: |
-        ls
+      with:
+        path: source
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
     - name: npm install and build, then move built files into site
       run: |
+        cd source
         npm install
         npm run build
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         mv build pr$PR_NUMBER
+        cd ..
         rm -rf site/pr$PR_NUMBER
-        mv pr$PR_NUMBER site
+        mv source/pr$PR_NUMBER site
     - name: Deploy site
       uses: s0/git-publish-subdir-action@master
       env:
