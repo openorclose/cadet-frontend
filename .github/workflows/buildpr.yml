@@ -19,6 +19,7 @@ jobs:
         mv src pr$PR_NUMBER
         git clone https://github.com/openorclose/actions-test.git
         rm -rf actions-test/pr$PR_NUMBER
+        rm -rf actions-test/.git
         mv pr$PR_NUMBER actions-test
     - name: Deploy site
       uses: s0/git-publish-subdir-action@master
